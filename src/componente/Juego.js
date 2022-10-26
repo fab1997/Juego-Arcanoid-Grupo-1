@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Phaser from "phaser";
 import { useEffect, useState } from "react";
+import Win from "./Juego/Win";
+import Gameover from "./Juego/GameOver";
 
 function Juego(){
     
@@ -27,7 +29,7 @@ useEffect(() => {
                 gravity: { y: 100 }
             }
         },
-        scene: [Escene ]    
+        scene: [Escene, Win, Gameover ]    
     };
    
     var game = new Phaser.Game(config);
