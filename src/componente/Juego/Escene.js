@@ -4,12 +4,16 @@ class Escene extends Phaser.Scene {
     constructor(){
         super({key: 'Inicio'});
     }
-    Init(){
-     this.puntos= 0;   
+    
+    //Init(){
+    // this.puntos = 0;   
+    //}
 
-    }
+    //Se emplean variables globales
     plataforms = null;
     cursors = null;
+    puntaje = 0;
+    puntos = 10;
 
     preload() {
         this.load.image("fondo", "imagen/fondo.jpg");
@@ -64,9 +68,11 @@ class Escene extends Phaser.Scene {
 
 
     }
-   /* colisionPelotaBloque(ball, bloques) {
+
+    //Método que detecta colisión entre la pelota y los bloques
+     colisionPelotaBloque(ball, bloques) {
         bloques.disableBody(true, true);
-        this.aumentarPuntaje(1);
+        this.aumentarPuntaje();
         /* if(this.bloques.countActive()===0){
              this.felicitar();
          }*/ 
@@ -75,13 +81,16 @@ class Escene extends Phaser.Scene {
          this.scene.start("Win");
  
      }*/
-     aumentarPuntaje(puntos) {
-        this.puntaje = puntos + 1 ;
-        console.log(this.puntaje);
-        this.puntajeEnTexto.setText('Puntos: ' + this.puntaje);
     }
 
+    //Método que permite aumentar el puntaje
+     aumentarPuntaje() {
+        this.puntaje = this.puntaje + this.puntos;
+        this.puntajeEnTexto.setText('Puntos: ' + this.puntaje);
+        console.log(this.puntaje);
+    }
 
+    //Método que detecta colisión entre la pelota y la plataforma
     contarColision(ball, plataforms) {
         let lugarDeImpacto = ball.x - plataforms.x
         if (lugarDeImpacto > 0) {
@@ -91,9 +100,6 @@ class Escene extends Phaser.Scene {
         } else {
             ball.setVelocityX(Phaser.Math.Between(-10, 10))
         }
-
-
-
     }
     update() {
         //Movimientos laterales de la plataforma
@@ -118,15 +124,6 @@ class Escene extends Phaser.Scene {
             this.ball.setData('apagada', false);
         }
     }
-    colisionPelotaBloque(ball, bloques) {
-        bloques.disableBody(true, true);
-        this.aumentarPuntaje(1);
-        /* if(this.bloques.countActive()===0){
-             this.felicitar();
-         }*/ 
-    }
-   
-
 }
 
 
