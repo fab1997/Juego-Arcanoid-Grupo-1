@@ -4,7 +4,7 @@ class Escene extends Phaser.Scene {
     constructor(){
         super({key: 'Inicio'});
     }
-    Init(){
+    init(){
      this.puntos= 0;   
 
     }
@@ -35,7 +35,7 @@ class Escene extends Phaser.Scene {
         //se crea los bloques
         this.bloques = this.physics.add.staticGroup({
             key: ['bloqueAzul', 'bloqueRojo', 'bloqueAmarillo'],
-            frameQuantity: 3,
+            frameQuantity: 1,
             gridAlign: { width: 10, height: 10, cellWidth: 64, cellHeight: 32, x: 112, y: 50 }
         });
 
@@ -64,17 +64,17 @@ class Escene extends Phaser.Scene {
 
 
     }
-   /* colisionPelotaBloque(ball, bloques) {
+    colisionPelotaBloque(ball, bloques) {
         bloques.disableBody(true, true);
         this.aumentarPuntaje(1);
-        /* if(this.bloques.countActive()===0){
+         if(this.bloques.countActive()===0){
              this.felicitar();
-         }*/ 
-    
-    /* felicitar(){
+         }
+        }
+     felicitar(){
          this.scene.start("Win");
  
-     }*/
+     }
      aumentarPuntaje(puntos) {
         this.puntaje = puntos + 1 ;
         console.log(this.puntaje);
@@ -91,18 +91,15 @@ class Escene extends Phaser.Scene {
         } else {
             ball.setVelocityX(Phaser.Math.Between(-10, 10))
         }
-
-
-
     }
     update() {
         //Movimientos laterales de la plataforma
         if (this.cursors.left.isDown) {
-            this.plataforms.setVelocityX(-300)
+            this.plataforms.setVelocityX(-300);
          
         }
         else if (this.cursors.right.isDown) {
-            this.plataforms.setVelocityX(300)
+            this.plataforms.setVelocityX(300);
          
         }
         else {
@@ -117,18 +114,13 @@ class Escene extends Phaser.Scene {
             this.ball.setVelocity(50,-450);
             this.ball.setData('apagada', false);
         }
+        if(this.ball.y > 600){
+            this.mostrarGameover();
+        }
     }
-    colisionPelotaBloque(ball, bloques) {
-        bloques.disableBody(true, true);
-        this.aumentarPuntaje(1);
-        /* if(this.bloques.countActive()===0){
-             this.felicitar();
-         }*/ 
+    mostrarGameover(){
+        this.scene.start('GameOver')
     }
-   
-
-}
-
-
+}   
 
 export default Escene;

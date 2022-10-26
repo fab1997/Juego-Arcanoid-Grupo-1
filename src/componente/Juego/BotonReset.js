@@ -1,17 +1,17 @@
-export class BotonReset{
-    constructor(escene){
-        this.escenaRelacionada = escene;
+ export class BotonReset{
+    constructor(escena){
+        this.escenaR = escena;
     }
 
     precargar(){
-        this.escenaRelacionada.load.imagen("boton","imagen/BotonReinicio.jpg");
+        this.escenaR.load.imagen("boton","imagen/BotonReinicio.jpg");
 
     }
     crear(){
-        this.botoninicio = this.escenaRelacionada.add.imagen(400,500,'boton').setInteractive();
+        this.botoninicio = this.escenaR.add.imagen(400,500,'boton').setInteractive();
 
         this.botoninicio.on('pointerdown', () => {
-            this.escenaRelacionada.scene.start('Inicio')
+            this.escenaR.scene.start('Inicio')
 
         });
 
