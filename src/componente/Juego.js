@@ -10,19 +10,24 @@ function Juego(){
     function play(){
         new Audio(sonido1).play();
     }
+    
     const[listo, setListo] = useState(false);
 useEffect(() => {
     var config = {
         type: Phaser.AUTO,
-        width: 800,
-        height: 600,
+        scale:{
+            autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
+            width: 800,
+            height: 600,
+        },
+        
         physics: {
             default: 'arcade',
             arcade: {
-                gravity: { y: 200 }
+                gravity: { y: 100 }
             }
         },
-        scene: [Escene]    
+        scene: [Escene ]    
     };
    
     var game = new Phaser.Game(config);
