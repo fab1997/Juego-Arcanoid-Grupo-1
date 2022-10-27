@@ -1,10 +1,10 @@
 import Phaser from "phaser";
 
 class Escene extends Phaser.Scene {
-    constructor(){
-        super({key: 'Inicio'});
+    constructor() {
+        super({ key: 'Inicio' });
     }
-    
+
     //Init(){
     // this.puntos = 0;   
     //}
@@ -14,6 +14,7 @@ class Escene extends Phaser.Scene {
     cursors = null;
     puntaje = 0;
     puntos = 10;
+    sonido1 = null;
 
     preload() {
         this.load.image("fondo", "imagen/fondo.jpg");
@@ -22,11 +23,19 @@ class Escene extends Phaser.Scene {
         this.load.image("bloqueRojo", "imagen/red1.png");
         this.load.image("bloqueAmarillo", "imagen/yellow1.png");
         this.load.image("ball", "imagen/ball1.png");
+        this.load.audio('nivel1', 'sonido/level1.mp3')
 
     }
     create() {
         //creando el fondo
         this.add.image(400, 300, "fondo");
+
+        this.sonido1 = this.sound.add('nivel1');
+        const soundConfig = {
+            loop: true
+        }
+
+        this.sonido1.play(soundConfig)
 
         this.puntajeEnTexto = this.add.text(10, 10, 'Puntos: 0', {
             fontSize: '20px',
@@ -34,7 +43,7 @@ class Escene extends Phaser.Scene {
             fontFamily: 'arial'
         });
 
-       
+
 
         //se crea los bloques
         this.bloques = this.physics.add.staticGroup({
@@ -46,19 +55,19 @@ class Escene extends Phaser.Scene {
         // se crea la pelota con sus fisicas
         this.ball = this.physics.add.image(400, 480, "ball").setCollideWorldBounds(true).setBounce(1);
         this.ball.setData('apagada', true);
-        
+
         const keyCodes = Phaser.Input.Keyboard.KeyCodes;
         this.teclaA = this.input.keyboard.addKey(keyCodes.A);
-        
+
         // se crea la platafomra
-         this.plataforms = this.physics.add.image(400, 500, "base").setImmovable();
-         // se cancela la gravedad
-         this.plataforms.body.allowGravity = false;
-         this.plataforms.setCollideWorldBounds(true);
-         // se agrega un objeto para mover la plataforma
-         this.cursors = this.input.keyboard.createCursorKeys();
- 
-       
+        this.plataforms = this.physics.add.image(400, 500, "base").setImmovable();
+        // se cancela la gravedad
+        this.plataforms.body.allowGravity = false;
+        this.plataforms.setCollideWorldBounds(true);
+        // se agrega un objeto para mover la plataforma
+        this.cursors = this.input.keyboard.createCursorKeys();
+
+
 
 
         this.physics.add.collider(this.ball, this.plataforms, this.contarColision, null, this);
@@ -70,7 +79,7 @@ class Escene extends Phaser.Scene {
     }
 
     //Método que detecta colisión entre la pelota y los bloques
-     colisionPelotaBloque(ball, bloques) {
+    colisionPelotaBloque(ball, bloques) {
         bloques.disableBody(true, true);
         this.aumentarPuntaje();
         /* if(this.bloques.countActive()===0){
@@ -84,7 +93,7 @@ class Escene extends Phaser.Scene {
     }
 
     //Método que permite aumentar el puntaje
-     aumentarPuntaje() {
+    aumentarPuntaje() {
         this.puntaje = this.puntaje + this.puntos;
         this.puntajeEnTexto.setText('Puntos: ' + this.puntaje);
         console.log(this.puntaje);
@@ -105,31 +114,33 @@ class Escene extends Phaser.Scene {
         //Movimientos laterales de la plataforma
         if (this.cursors.left.isDown) {
             this.plataforms.setVelocityX(-300);
-         
+
         }
         else if (this.cursors.right.isDown) {
             this.plataforms.setVelocityX(300);
-         
+
         }
         else {
             this.plataforms.setVelocityX(0);
-           
+
         }
-        if(this.ball.getData('apagada')){
+        if (this.ball.getData('apagada')) {
             this.ball.x = this.plataforms.x;
 
         }
-        if(this.cursors.space.isDown  && this.ball.getData('apagada',true) ){
-            this.ball.setVelocity(50,-450);
+        if (this.cursors.space.isDown && this.ball.getData('apagada', true)) {
+            this.ball.setVelocity(50, -450);
             this.ball.setData('apagada', false);
         }
-        if(this.ball.y > 600){
+        if (this.ball.y > 600) {
+            this.sonido1.stop();
             this.mostrarGameover();
         }
     }
-    mostrarGameover(){
+
+    mostrarGameover() {
         this.scene.start('GameOver')
     }
-}   
+}
 
 export default Escene;
