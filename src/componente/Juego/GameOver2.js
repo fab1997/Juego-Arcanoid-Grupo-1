@@ -16,7 +16,8 @@ class Gameover2 extends Phaser.Scene{
         this.reset.crear2();
         this.sonido3 = this.sound.add('gameOver');
         const soundConfig = {
-            loop: false
+            loop: false,
+            volume: 0.2
         }
 
         this.sonido3.play(soundConfig)

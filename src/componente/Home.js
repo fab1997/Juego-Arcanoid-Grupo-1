@@ -11,7 +11,7 @@ export default function Home(){
     }
     return(
         <div className="home">
-            <h1>Arcanoid</h1>
+            <h1>Arkanoid</h1>
             <img src={Inicio} alt="Juego"  className="rounded mx-auto d-block"/>
             
             <div className="d-grid gap-2 col-6 mx-auto " >
