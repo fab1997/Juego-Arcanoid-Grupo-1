@@ -7,13 +7,12 @@ class Gameover extends Phaser.Scene{
         this.reset = new BotonReset(this);
     }
     preload(){
-        this.load.image("Perder" ,"imagen/game over.jpg");
-      //  this.reset.precargar();
+        this.load.image('Perder' ,"imagen/game over.jpg");
+        this.reset.precargar();
     }
     create(){
-        this.add.image(400, 300, "fondo");
-      //  this.BotonReset.crear();
         this.imagenWin = this.add.image(400,300,'Perder');
+        this.reset.crear();
     }
 }
 export default Gameover;
