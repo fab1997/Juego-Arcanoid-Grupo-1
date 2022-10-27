@@ -23,7 +23,7 @@ class Escene extends Phaser.Scene {
         this.load.image("bloqueRojo", "imagen/red1.png");
         this.load.image("bloqueAmarillo", "imagen/yellow1.png");
         this.load.image("ball", "imagen/ball1.png");
-        this.load.audio('nivel1', 'sonido/level1.mp3')
+        this.load.audio('nivel1', 'sonido/level1.mp3');
 
     }
     create() {

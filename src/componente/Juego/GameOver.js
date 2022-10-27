@@ -9,10 +9,17 @@ class Gameover extends Phaser.Scene{
     preload(){
         this.load.image('Perder' ,"imagen/game over.jpg");
         this.reset.precargar();
+        this.load.audio('gameOver', 'sonido/gameOver.mp3');
     }
     create(){
         this.imagenLose = this.add.image(400,300,'Perder');
         this.reset.crear();
+        this.sonido3 = this.sound.add('gameOver');
+        const soundConfig = {
+            loop: false
+        }
+
+        this.sonido3.play(soundConfig)
     }
 }
 export default Gameover;
