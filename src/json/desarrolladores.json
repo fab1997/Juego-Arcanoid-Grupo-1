@@ -34,4 +34,11 @@
         "intereses": "Intereses: Jugar a la pelota con amigos",
         "linkGit": "Link GitHub: https://github.com/fab1997"
     }
+    {
+        "perfil": "./img/desarrolladores/farfanjpg",
+        "nombre": "Javier Farfán",
+        "edad": "Edad: 22",
+        "intereses": "Intereses: Escalada, ajedrez, anime y videojuegos",
+        "linkGit": "Link GitHub: https://github.com/ChArLeS090800"
+    }
 ]
