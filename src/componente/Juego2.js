@@ -1,13 +1,13 @@
-import Escene from "./Juego/Escene";
+import Escene2 from "./Juego/Escene2";
 import sonido1 from '../sounds/sonido1.mp3';
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Phaser from "phaser";
 import { useEffect, useState } from "react";
-import Win from "./Juego/Win";
-import Gameover from "./Juego/GameOver";
+import Win2 from "./Juego/Win2";
+import Gameover2 from "./Juego/GameOver2";
 
-function Juego(){
+function Juego2(){
     
     function play(){
         new Audio(sonido1).play();
@@ -29,7 +29,7 @@ useEffect(() => {
                 gravity: { y: 100 }
             }
         },
-        scene: [Escene, Win, Gameover ]    
+        scene: [Escene2, Win2, Gameover2 ]    
     };
    
     var game = new Phaser.Game(config);
@@ -52,4 +52,4 @@ useEffect(() => {
 
 
 }
-export default Juego;
+export default Juego2;

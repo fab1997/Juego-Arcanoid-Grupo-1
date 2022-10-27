@@ -48,7 +48,7 @@ class Escene extends Phaser.Scene {
         //se crea los bloques
         this.bloques = this.physics.add.staticGroup({
             key: ['bloqueAzul', 'bloqueRojo', 'bloqueAmarillo'],
-            frameQuantity: 1,
+            frameQuantity: 10,
             gridAlign: { width: 10, height: 10, cellWidth: 64, cellHeight: 32, x: 112, y: 50 }
         });
 
@@ -83,14 +83,14 @@ class Escene extends Phaser.Scene {
         bloques.disableBody(true, true);
         this.aumentarPuntaje();
         if(this.bloques.countActive()===0){
-             this.pasarNivel();
-         }
+            this.felicitar();
         }
-     pasarNivel(){
-        this.sonido1.stop();
-         this.scene.start("Escene2");
- 
-    }
+       }
+    felicitar(){
+       this.sonido1.stop();
+       this.puntaje=0;
+       this.scene.start("Win");     
+   }
 
     //Método que permite aumentar el puntaje
     aumentarPuntaje() {

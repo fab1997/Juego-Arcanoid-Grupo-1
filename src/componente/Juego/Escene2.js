@@ -51,7 +51,7 @@ class Escene2 extends Phaser.Scene {
         //se crea los bloques
         this.bloques = this.physics.add.staticGroup({
             key: ['bloqueAzul', 'bloqueRojo', 'bloqueAmarillo','bloqueVerde', 'bloqueNaranja', 'bloqueVioleta'],
-            frameQuantity: 1,
+            frameQuantity: 10,
             gridAlign: { width: 10, height: 10, cellWidth: 64, cellHeight: 32, x: 112, y: 50 }
         });
 
@@ -91,7 +91,8 @@ class Escene2 extends Phaser.Scene {
         }
      felicitar(){
         this.sonido2.stop();
-        this.scene.start("Win");     
+        this.puntaje=0;
+        this.scene.start("Win2");     
     }
 
     //Método que permite aumentar el puntaje
@@ -136,12 +137,13 @@ class Escene2 extends Phaser.Scene {
         }
         if (this.ball.y > 600) {
             this.sonido2.stop();
+            this.puntaje=0;
             this.mostrarGameover();
         }
     }
 
     mostrarGameover() {
-        this.scene.start('GameOver')
+        this.scene.start('GameOver2')
     }
 }
 

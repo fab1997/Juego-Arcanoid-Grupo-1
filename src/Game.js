@@ -1,8 +1,7 @@
-
 import {BrowserRouter as Router, Routes, Route,Link} from 'react-router-dom';
 import Home from './componente/Home';
 import Juego from "./componente/Juego";
-import Desarrolladores from './componente/Desarrolladores';
+import Juego2 from './componente/Juego2';
 
 function Game() {
   return (
@@ -11,7 +10,7 @@ function Game() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/juego' element={<Juego/>}/>
-        <Route path='/desarrolladores' element={<Desarrolladores/>}/>
+        <Route path='/Juego2' element={<Juego2/>}/>
       </Routes>
     </Router>
     
