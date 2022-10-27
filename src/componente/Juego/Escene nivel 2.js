@@ -1,8 +1,8 @@
 import Phaser from "phaser";
 
-class Escene extends Phaser.Scene {
+class Escene2 extends Phaser.Scene {
     constructor() {
-        super({ key: 'Inicio' });
+        super({ key: 'Escene2' });
     }
 
     //Init(){
@@ -14,14 +14,17 @@ class Escene extends Phaser.Scene {
     cursors = null;
     puntaje = 0;
     puntos = 10;
-    sonido1 = null;
+    sonido2 = null;
 
     preload() {
-        this.load.image("fondo", "imagen/fondo2.png");
-        this.load.image("base", "imagen/paddle1.png");
-        this.load.image("bloque", "imagen/green.png");
-        this.load.image("bloque", "imagen/orange.jpg");
-        this.load.image("bloque", "imagen/purple1.png");
+        this.load.image("fondo2", "imagen/fondo2.png");
+        this.load.image("base2", "imagen/paddle2.png");
+        this.load.image("bloqueVerde", "imagen/green1.png");
+        this.load.image("bloqueNaranja", "imagen/orange1.png");
+        this.load.image("bloqueVioleta", "imagen/purple1.png");        
+        this.load.image("bloqueAzul", "imagen/blue1.png");
+        this.load.image("bloqueRojo", "imagen/red1.png");
+        this.load.image("bloqueAmarillo", "imagen/yellow1.png");
         this.load.image("ball", "imagen/ball1.png");
         this.load.audio('nivel2', 'sonido/level2.mp3')
 
@@ -30,12 +33,12 @@ class Escene extends Phaser.Scene {
         //creando el fondo
         this.add.image(400, 300, "fondo2");
 
-        this.sonido1 = this.sound.add('nivel2');
+        this.sonido2 = this.sound.add('nivel2');
         const soundConfig = {
             loop: true
         }
 
-        this.sonido1.play(soundConfig)
+        this.sonido2.play(soundConfig)
 
         this.puntajeEnTexto = this.add.text(10, 10, 'Puntos: 0', {
             fontSize: '20px',
@@ -47,7 +50,7 @@ class Escene extends Phaser.Scene {
 
         //se crea los bloques
         this.bloques = this.physics.add.staticGroup({
-            key: ['bloqueVerde', 'bloqueNaranja', 'bloqueVioleta'],
+            key: ['bloqueAzul', 'bloqueRojo', 'bloqueAmarillo','bloqueVerde', 'bloqueNaranja', 'bloqueVioleta'],
             frameQuantity: 1,
             gridAlign: { width: 10, height: 10, cellWidth: 64, cellHeight: 32, x: 112, y: 50 }
         });
@@ -60,7 +63,7 @@ class Escene extends Phaser.Scene {
         this.teclaA = this.input.keyboard.addKey(keyCodes.A);
 
         // se crea la platafomra
-        this.plataforms = this.physics.add.image(400, 500, "base").setImmovable();
+        this.plataforms = this.physics.add.image(400, 500, "base2").setImmovable();
         // se cancela la gravedad
         this.plataforms.body.allowGravity = false;
         this.plataforms.setCollideWorldBounds(true);
@@ -82,14 +85,13 @@ class Escene extends Phaser.Scene {
     colisionPelotaBloque(ball, bloques) {
         bloques.disableBody(true, true);
         this.aumentarPuntaje();
-        /* if(this.bloques.countActive()===0){
+        if(this.bloques.countActive()===0){
              this.felicitar();
          }
         }
      felicitar(){
-         this.scene.start("Win");
- 
-     }*/
+        this.sonido2.stop();
+        this.scene.start("Win");     
     }
 
     //Método que permite aumentar el puntaje
@@ -129,11 +131,11 @@ class Escene extends Phaser.Scene {
 
         }
         if (this.cursors.space.isDown && this.ball.getData('apagada', true)) {
-            this.ball.setVelocity(50, -450);
+            this.ball.setVelocity(50, -650);
             this.ball.setData('apagada', false);
         }
         if (this.ball.y > 600) {
-            this.sonido1.stop();
+            this.sonido2.stop();
             this.mostrarGameover();
         }
     }
@@ -143,4 +145,4 @@ class Escene extends Phaser.Scene {
     }
 }
 
-export default Escene;
+export default Escene2;

@@ -7,13 +7,12 @@ class Win extends Phaser.Scene{
         this.reset = new BotonReset(this);
     }
     preload(){
-        this.load.image("Win" ,"imagen/win.webp");
-      //  this.reset.precargar();
+        this.load.image("Win" ,"imagen/win.png");
+        this.reset.precargar();
     }
     create(){
-        this.add.image(400, 300, "fondo");
-      //  this.BotonReset.crear();
         this.imagenWin = this.add.image(400,300,'Win');
+        this.reset.crear();
     }
 }
 export default Win;

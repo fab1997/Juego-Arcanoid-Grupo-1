@@ -82,14 +82,14 @@ class Escene extends Phaser.Scene {
     colisionPelotaBloque(ball, bloques) {
         bloques.disableBody(true, true);
         this.aumentarPuntaje();
-        /* if(this.bloques.countActive()===0){
-             this.felicitar();
+        if(this.bloques.countActive()===0){
+             this.pasarNivel();
          }
         }
-     felicitar(){
-         this.scene.start("Win");
+     pasarNivel(){
+        this.sonido1.stop();
+         this.scene.start("Escene2");
  
-     }*/
     }
 
     //Método que permite aumentar el puntaje
@@ -134,6 +134,7 @@ class Escene extends Phaser.Scene {
         }
         if (this.ball.y > 600) {
             this.sonido1.stop();
+            this.puntaje=0;
             this.mostrarGameover();
         }
     }

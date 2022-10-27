@@ -11,7 +11,7 @@ class Gameover extends Phaser.Scene{
         this.reset.precargar();
     }
     create(){
-        this.imagenWin = this.add.image(400,300,'Perder');
+        this.imagenLose = this.add.image(400,300,'Perder');
         this.reset.crear();
     }
 }

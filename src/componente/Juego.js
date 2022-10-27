@@ -1,4 +1,5 @@
 import Escene from "./Juego/Escene";
+import Escene2 from "./Juego/Escene nivel 2";
 import sonido1 from '../sounds/sonido1.mp3';
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -29,7 +30,7 @@ useEffect(() => {
                 gravity: { y: 100 }
             }
         },
-        scene: [Escene, Win, Gameover ]    
+        scene: [Escene, Escene2, Win, Gameover ]    
     };
    
     var game = new Phaser.Game(config);
